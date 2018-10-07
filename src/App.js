@@ -9,6 +9,7 @@ import Etienne from './Etienne.js';
 import GeneTellem from './GeneTellem.js';
 import Typist from 'react-typist';
 import styled, { keyframes } from 'styled-components';
+var scrollPosition = require('scroll-xy')
 
 
 
@@ -18,21 +19,49 @@ class App extends Component {
     super(props);
     this.state = {
       logs: [
-        "Hello folks, welcome here!",
+        "Hey there!",
         "Yup! Welcome to my website ;-)",
         "Here, you'll find a selection of my latest projects...",
         "I like to work with interactivity (a lot)",
         "Bless you guys -- Bless ya"
-
       ],
-      currentEle: 2
+      currentEle: 0,
+      displayLogs: "none",
+      scrollY: 0
     }
     this.launchAnim = this.launchAnim.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount(){
+    window.scrollTo(0, 0);
     this.launchAnim();
+    window.addEventListener('scroll', this.handleScroll);
+    console.log(document.documentElement.scrollHeight, "-----fff");
   }
+
+  handleScroll(e) {
+    let supportPageOffset = window.pageXOffset !== undefined;
+    let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
+    
+    let scroll = {
+     x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
+     y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
+  };
+    this.setState({
+      scrollY: scroll.y
+    })
+    if(this.state.scrollY > 200){
+      this.setState({
+        displayLogs: "block"
+      })
+    }else{
+      this.setState({
+        displayLogs: "none"
+      })
+    }
+  };
+
 
   launchAnim(){
     const currentEle = this.state.currentEle;
@@ -67,9 +96,12 @@ class App extends Component {
 
 
     render() {
+
+      console.log(this.state.scrollY, "------");
+
         return (
             <div className="App">
-                <div className="logs">
+                <div className="logs" style={{display: this.state.displayLogs}}>
                   {this.state.splitedEle}
                 </div>
 
