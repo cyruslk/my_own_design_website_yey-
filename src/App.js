@@ -25,13 +25,12 @@ class App extends Component {
         "I like to work with interactivity (a lot)",
         "Bless you guys -- Bless ya"
       ],
-      currentEle: 0,
+      currentEleIndex: 0,
       displayLogs: "none",
       scrollY: 0
     }
     this.launchAnim = this.launchAnim.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
-    this.triggerState = this.triggerState.bind(this);
   }
 
   componentDidMount(){
@@ -43,7 +42,6 @@ class App extends Component {
   handleScroll(e) {
     let supportPageOffset = window.pageXOffset !== undefined;
     let isCSS1Compat = ((document.compatMode || '') === 'CSS1Compat');
-    
     let scroll = {
      x: supportPageOffset ? window.pageXOffset : isCSS1Compat ? document.documentElement.scrollLeft : document.body.scrollLeft,
      y: supportPageOffset ? window.pageYOffset : isCSS1Compat ? document.documentElement.scrollTop : document.body.scrollTop
@@ -59,20 +57,25 @@ class App extends Component {
   };
 
 
-  launchAnim(){
-        
-    const currentEle = this.state.currentEle;
-    const timeWithDelayed = (this.state.logs[currentEle].split("").length)/10 + 1.5;
+  launchAnim(){    
+    const currentEleIndex = this.state.currentEleIndex;
+    const timeWithDelayed = (this.state.logs[currentEleIndex].split("").length)/10 + 1.5;
     this.setState({
       timeOfDelay: timeWithDelayed
     })
     
-    const splitedEle = this.state.logs[currentEle].split("").map((ele, index) => {
+    const splitedEle = this.state.logs[currentEleIndex].split("").map((ele, index) => {
     const toggleVisibility = keyframes`
       0%{ opacity:0;}
       99.9% {opacity:0;}
       100% {opacity:1;}
       `;
+      
+      // function returnRandomDelay(){
+      //   const items = [10, 5, 4, 6];
+      //   return items[Math.floor(Math.random()*items.length)];
+      // }
+            
       const Span = styled.span`
         animation: ${toggleVisibility} ${index/10}s linear;
         animation-iteration-count: 1;
@@ -84,26 +87,11 @@ class App extends Component {
         )
       })
       this.setState({
-        splitedEle: splitedEle
-      })
-      this.setState({
-        currentEle: this.state.currentEle + 1
+        splitedEle: splitedEle,
+        currentEleIndex: this.state.currentEleIndex + 1
       })
     }
     
-    triggerState(){
-      const lengthOfArray = this.state.logs.length;
-      if(this.state.currentEle < lengthOfArray){
-        this.setState({
-          currentEle: this.state.currentEle + 1
-        })
-      }else{
-        this.setState({
-          currentEle: 0
-        })
-      }
-      this.launchAnim();
-    }
 
     render() {
       
