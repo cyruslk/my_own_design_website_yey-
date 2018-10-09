@@ -31,13 +31,13 @@ class App extends Component {
     }
     this.launchAnim = this.launchAnim.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
+    this.triggerState = this.triggerState.bind(this);
   }
 
   componentDidMount(){
     window.scrollTo(0, 0);
     this.launchAnim();
     window.addEventListener('scroll', this.handleScroll);
-    console.log(document.documentElement.scrollHeight, "-----fff");
   }
 
   handleScroll(e) {
@@ -55,29 +55,24 @@ class App extends Component {
       this.setState({
         displayLogs: "block"
       })
-    }else{
-      this.setState({
-        displayLogs: "none"
-      })
     }
   };
 
 
   launchAnim(){
+        
     const currentEle = this.state.currentEle;
     const timeWithDelayed = (this.state.logs[currentEle].split("").length)/10 + 1.5;
-    console.log(timeWithDelayed);
     this.setState({
       timeOfDelay: timeWithDelayed
     })
-
+    
     const splitedEle = this.state.logs[currentEle].split("").map((ele, index) => {
     const toggleVisibility = keyframes`
       0%{ opacity:0;}
       99.9% {opacity:0;}
       100% {opacity:1;}
       `;
-
       const Span = styled.span`
         animation: ${toggleVisibility} ${index/10}s linear;
         animation-iteration-count: 1;
@@ -91,16 +86,29 @@ class App extends Component {
       this.setState({
         splitedEle: splitedEle
       })
+      this.setState({
+        currentEle: this.state.currentEle + 1
+      })
+    }
+    
+    triggerState(){
+      const lengthOfArray = this.state.logs.length;
+      if(this.state.currentEle < lengthOfArray){
+        this.setState({
+          currentEle: this.state.currentEle + 1
+        })
+      }else{
+        this.setState({
+          currentEle: 0
+        })
+      }
+      this.launchAnim();
     }
 
-
-
     render() {
-
-      console.log(this.state.scrollY, "------");
-
+      
         return (
-            <div className="App">
+            <div className="App" onClick={this.triggerState}>
                 <div className="logs" style={{display: this.state.displayLogs}}>
                   {this.state.splitedEle}
                 </div>
