@@ -13,7 +13,15 @@ class GabRei extends Component {
 
                   <section className="component_info">
                     <h1>Website for Gab Rei. Visit online here -> <span>www.gab-rei.75-20.com</span></h1>
+
+                    <div className="vid_button">
+                    <span>vid?</span>
+                    </div>
+
+
                   </section>
+
+                  
 
                     <div className="flex_div">
                       <div>

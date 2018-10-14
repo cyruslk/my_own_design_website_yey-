@@ -18,6 +18,12 @@ class VieDange extends Component {
 
                 <section className="component_info">
                   <h1>Full Website (V1) & Press-kits for {v_d}. Visit online here -> <span>www.viedange.75-20.com</span></h1>
+
+                  <div className="vid_button">
+                  <span>vid?</span>
+                  </div>
+
+
                 </section>
 
                 <img className="big_img" src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1522627557/logo_viedange_kfwyfh.svg"/>

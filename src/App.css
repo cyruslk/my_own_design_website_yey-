@@ -4,9 +4,46 @@ html, body{
   background-color: black !important;
 }
 
+
 *{
   font-size: 1.6vw;
   font-family: garamond;
+}
+
+.video_wrapper{
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  -khtml-opacity: 0.5;
+  flex-direction: column;
+
+
+}
+
+.video_wrapper_inner{
+  background-color: black;
+  width: 80vw;
+  height: 80vh;
+  border: 1px solid white;
+}
+
+.video_frame{
+  padding-top: 0;
+  position: absolute;
+  padding: 0;
+  z-index: 1;
+}
+
+
+.overflow_hidden{
+  overflow: hidden;
+  position: fixed;
 }
 
 .App{
@@ -43,6 +80,30 @@ html, body{
     color: white;
 }
 
+
+.component_info h1{
+  margin: 0;
+}
+
+
+.video_wrapper .vid_button{
+  z-index: 10000;
+}
+
+.vid_button{
+  background-color: transparent;
+  padding: 1vw;
+  border-radius: 20px;
+  border: 1px solid;
+  margin-left: 1vw;
+}
+
+.vid_button span{
+  font-family: Arial Narrow,Arial,sans-serif;
+  color: black;
+}
+
+
 .flex_div{
   display: flex;
   align-items: center;
@@ -53,6 +114,44 @@ html, body{
 .block{
   display: block;
   background-color: none;
+}
+
+
+.video_flex{
+  background-color: #202020;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.video_flex .component_info h1{
+  color: white;
+}
+
+.video_flex .component_info span{
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.video_flex .vid_button{
+  border: 1px solid white;
+}
+
+.video_flex .vid_button span{
+  color: white;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  font-weight: 100;
+  background-color: transparent;
+  padding: 1vw;
+  border-radius: 20px;
+  border: none;
+  margin-left: 1vw;
 }
 
 .flex_div div{
@@ -205,7 +304,7 @@ html, body{
   padding-bottom: 2vw;
 }
 
-#project span{
+.component_info h1 span{
   color: black;
   font-family: garamond;
   padding: .1vw;
@@ -214,11 +313,13 @@ html, body{
   border-bottom: 1px solid black;
 }
 
+
 .logs{
   display: none;
   position: fixed;
   right: 0;
   top: 0;
+  color: white;
   margin: 3vw;
   z-index: 10;
   background-color: black;
@@ -293,6 +394,7 @@ padding: 2vw;
 -ms-flex-direction: column;
 flex-direction: column;
 position: relative;
+padding-bottom: 4vw;
 
 }
 
@@ -346,7 +448,7 @@ video{
   align-items: center;
   justify-content: center;
   width: 100vw;
-  margin-bottom: 1vw;
+  margin-bottom: 4vw;
 }
 
 

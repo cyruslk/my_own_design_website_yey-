@@ -11,6 +11,12 @@ class GeneTellem extends Component {
 
                 <section className="component_info">
                   <h1>Website for Gene Tellem. Visit online here -> <span>www.genetellem.com</span></h1>
+
+                  <div className="vid_button">
+                  <span>vid?</span>
+                  </div>
+
+
                 </section>
 
                 <div className="flex_div">
