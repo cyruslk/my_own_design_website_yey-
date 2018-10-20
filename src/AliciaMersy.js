@@ -23,7 +23,6 @@ class AliciaMersy extends Component {
     this._removePopup - this._removePopup.bind(this);
   }
 
-
   _onMouseClick(){
     this.setState({
       toggle: !this.state.toggle
@@ -84,14 +83,39 @@ class AliciaMersy extends Component {
         )
       }else{
         return (
-          <section className="video_wrapper">
-            <div className="vid_button"
-            onClick={this._onMouseClick}
-             style={{backgroundColor: "white"}}>
-            <span>close the vid?</span>
-            </div>
-            <VideoWrapper />
+          <div>
+          <section className="vid_popup">
           </section>
+          <section id="project" className="video_project">
+
+              <section className="component_info">
+                <h1>Website for Alicia Mersy. Visit online here -> <span>www.aliciamersy.com</span></h1>
+
+                <div className="vid_button" onClick={this._onMouseClick}>
+                <span>vid?</span>
+                </div>
+              </section>
+
+              <div className="imgs_flex">
+              <div className="flex_div">
+                <div>
+                <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg" />
+                </div>
+                <div>
+                <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933875/3_ufhnzf.jpg" />
+                </div>
+              </div>
+              <div className="flex_div">
+                <div>
+                <VideoWrapper source={"http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1539576736/vid_jeanne_iowqfm.mov"}/>
+                </div>
+                <div>
+                  <VideoWrapper source={"http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1539576736/vid_jeanne_iowqfm.mov"}/>
+                </div>
+              </div>
+              </div>
+              </section>
+          </div>
         );
       }
 
