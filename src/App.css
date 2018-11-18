@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'TimesN';
+  src: url('fonts/TimesN.otf');
+}
+
 
 html, body{
   overflow-x: hidden;
@@ -5,9 +10,20 @@ html, body{
 }
 
 
-*{
-  font-size: 1.6vw;
-  font-family: garamond;
+a{
+  color: white;
+  text-decoration: none;
+}
+
+.wrapper_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  flex-direction: column;
+  padding-top: 2vw;
+padding-bottom: 2vw;
+background-color: black;
 }
 
 .video_wrapper{
@@ -80,6 +96,9 @@ html, body{
 
 .component_info h1{
   margin: 0;
+  font-size: 3.7vw;
+  font-family: timesN;
+  font-weight: lighter;
 }
 
 
@@ -106,7 +125,7 @@ html, body{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 91vw;
+  width: 96vw;
 }
 
 .block{
@@ -161,7 +180,7 @@ html, body{
 
 .flex_div div img{
   width: 99%;
-    margin-bottom: 0.5vw;
+    margin-bottom: 1vw;
 }
 
 .fixed_pos{
@@ -271,14 +290,14 @@ width: 80%;
 }
 
 .poster_project div{
-  width: 32.5%;
+  width: 31.3%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .poster_project div img{
-  width: 97.5%;
+  width: 98.5%;
 }
 
 
@@ -295,16 +314,18 @@ width: 80%;
   -ms-flex-direction: column;
   flex-direction: column;
   position: relative;
-  padding-bottom: 2vw;
 }
 
 .component_info h1 span{
-  color: black;
-  font-family: garamond;
-  padding: .1vw;
-  margin-right: .5vw;
+  border-radius: 10px;
   font-size: 1.6vw;
-  border-bottom: 1px solid black;
+  text-transform: uppercase;
+  border: 1px solid;
+  padding: 0.3vw;
+  background-color: black;
+  color: black;
+  font-family: arial narrow;
+  font-weight: lighter;
 }
 
 
@@ -320,10 +341,12 @@ width: 80%;
   padding: 1vw;
   border-radius: 20px;
   margin-right: 1vw;
+  font-family: sans-serif;
 }
 
 .logs span{
-  font-family: Arial Narrow,Arial,sans-serif;
+  font-family: sans-serif;
+  font-weight: lighter;
   color: white;
 }
 
@@ -337,15 +360,53 @@ width: 80%;
 
 #intro{
   margin-top: 3vw;
-  margin-bottom: 9vw;
+  padding-bottom: 9vw;
+  border-bottom: 2px solid;
+}
+
+#intro h1 span{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 0.2vw;
+}
+
+.footer{
+  margin-top: 0;
+  margin-bottom: 1vw;
+  align-items: baseline;
+}
+
+.footer h1{
+    font-family: garamond;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .footer h2{
+      margin: 0;
+    }
+
+.footer span{
+  text-transform: uppercase;
+
+}
+
+.footer .flex_div{
+  justify-content: normal;
+}
+
+.footer .flex_div:last-child{
+  display: block;
 }
 
 #intro h1{
   margin: 0;
-  font-family: garamond;
-  font-size: 1.6vw;
-  text-align: center;
+  font-family: arial narrow;
+  font-size: 2.8vw;
   color: black;
+  font-weight: lighter;
+  text-transform: uppercase;
 }
 
 
@@ -422,9 +483,9 @@ padding-bottom: 4vw;
 
 
 video{
-  width: 100%;
+  width: 99%;
   height: 100%;
-  transform: scale(0.9);
+  margin-bottom: 1vw;
 }
 
 .component_info p{
@@ -440,9 +501,10 @@ video{
 .component_info{
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100vw;
-  margin-bottom: 4vw;
+  justify-content: flex-start;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  width: 76vw;
 }
 
 
@@ -476,4 +538,54 @@ video{
   align-items: center;
   padding-top: 2vw;
   padding-bottom: 2vw;
+}
+
+
+
+/* IPHONE PORTRAIT */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+  *{
+    font-size: 4vw;
+  }
+
+  #intro{
+        border-bottom: 1px solid;
+        margin-bottom: 0;
+        padding-bottom: 9vw;
+  }
+
+  #intro h1{
+    font-size: 4vw;
+    width: 80vw;
+  }
+
+  #intro h1:last-child{
+    margin-top: 5vw;
+  }
+
+  .flex_div{
+    flex-direction: column;
+  }
+
+  .flex_div div{
+    width: 90vw;
+  }
+
+  .component_info h1{
+    font-size: 4vw;
+    text-align: center;
+    width: 86vw;
+  }
+
+  .component_info h1 span{
+    display: block;
+    border-bottom: none;
+    font-size: 4vw;
+  }
+
 }

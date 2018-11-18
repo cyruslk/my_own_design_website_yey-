@@ -5,43 +5,51 @@ import {Player, ControlBar, PlayToggle} from 'video-react';
 var emoji = require('node-emoji')
 
 
-class GabRei extends Component {
+class ComponentWrapper extends Component {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+    }
+  }
+
+  componentDidMount(){
+  }
+
     render() {
         return (
             <div>
                 <section id="project" className="video_project">
 
                   <section className="component_info">
-                    <h1>Website for Gab Rei. Visit online here -> <span>www.gab-rei.75-20.com</span></h1>
-
-                    <div className="vid_button">
-                    <span>vid?</span>
-                    </div>
-
-
+                      <h1>{this.props.props[0].h1}
+                      <span><a href={this.props.props[0].link} target="_blank">
+                      {this.props.props[0].span}
+                      </a></span></h1>
                   </section>
 
-                  
-
+                    <section className="wrapper_img"
+                    style={{backgroundColor: this.props.props[0].backgroundColor}}>
                     <div className="flex_div">
                       <div>
-                      <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526944777/3_tlbnsr.jpg" />
+                      <img src={this.props.props[0].img[0]} />
                       </div>
                       <div>
-                      <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526944843/4_qypnv8.jpg" />
+                      <img src={this.props.props[0].img[1]} />
                     </div>
                     </div>
                     <div className="flex_div">
                       <div>
-                      <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526944994/5_ggkpok.jpg" />
+                      <img src={this.props.props[0].img[2]} />
                       </div>
                       <div>
-                      <img src="https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526945338/6_unrabl.jpg" />
+                      <img src={this.props.props[0].img[3]} />
                     </div>
                     </div>
-
-
                 </section>
+                </section>
+
 
             </div>
 
@@ -49,4 +57,4 @@ class GabRei extends Component {
     }
 }
 
-export default GabRei;
+export default ComponentWrapper;
