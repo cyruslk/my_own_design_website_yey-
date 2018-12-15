@@ -39,7 +39,7 @@ class VideoWrapper extends Component {
         return (
             <div className="video_main">
               {returnVideo}
-              <h1>{ReactHtmlParser(this.state.h1)}</h1>
+              <h1>{this.state.h1}</h1>
               <a href={this.state.link} target="_blank" className={this.state.class}>
               <span className={this.state.class}>{this.state.span}</span>
               </a>

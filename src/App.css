@@ -6,12 +6,115 @@
 
 html, body{
   overflow-x: hidden;
-  background-color: #000!important;
+}
+
+.line_through{
+  text-decoration: line-through;
+  border-bottom: 0 !important;
+  cursor: text;
+}
+
+.fixed_background{
+  height: 100vh;
+  width: 100vw;
+  background-color: #dcdcdc;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.process{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #181818;
+  flex-direction: column;
+}
+
+
+.dots{
+  height: 7vw;
+  border-radius: 70px;
+  width: 12vw;
+  border: 1px solid black;
+}
+
+.sub_dots{
+  background-color: black;
+  width: 1.25vw;
+  height: 1.25vw;
+  border-radius: 40px;
+  margin: 0.25vw;
+}
+
+.sub_dots:nth-child(1){
+  animation-delay: -1s;
+}
+.sub_dots:nth-child(2){
+  animation-delay: -0.85s;
+}
+.sub_dots:nth-child(3){
+  animation-delay: -0.7s;
+}
+
+
+.bubbles_container{
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  position: relative;
+}
+
+.bubbles_loader{
+  background-color: white;
+}
+
+.bubbles{
+  background-color: white;
+  border-radius: 20px;
+  display:inline-block;
+  margin-bottom: 1vw;
+  width: fit-content;
+}
+
+.bubbles_container_outer {
+  width: 95vw;
+  margin-bottom: 6vw;
+}
+
+.bubbles_logs{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3vw;
+}
+
+
+.bubbles h1{
+  font-size: 6vw;
+  padding: 3vw;
+  margin: 0;
+}
+
+.bubbles h1 span{
+  border-bottom: 4px solid black;
+  font-family: arial;
+}
+
+.process #intro_buttons span{
+  background-color: white;
+  color: black;
+}
+
+.process #intro_buttons h1,
+.process #intro_buttons h1:last-child
+{
+  color: white;
 }
 
 
 a{
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
@@ -29,21 +132,57 @@ background-color: black;
 .video_wrapper{
   background-color: #101010;
   top: 0;
-  width: 100vw;
+  width: 95vw;
   height: 100vh;
-  position: fixed;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   -khtml-opacity: 0.5;
   flex-direction: column;
+  padding-top: 3vw;
+  padding-bottom: 3vw;
+  margin-bottom: 4vw;
+}
 
+.test{
+  display: block;
+  position: fixed;
+  top: 4vw;
+  left: 5vw;
+  transform: rotate(2deg);
+  z-index: 0;
+}
 
+.video_wrapper:last-child{
+  margin-bottom: 0;
+}
+
+.video_main{
+  margin-bottom: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.video_main h1{
+  margin-top: 3vw;
+  font-family: TimesN;
+  font-size: 1.6vw;
+  color: black;
+  font-weight: lighter;
+  text-transform: uppercase;
+}
+
+.video_main span{
+  color: black;
+  /* background-color: black; */
+  padding: 0.3vw;
+  border-bottom: 1px solid;
 }
 
 .video_wrapper_inner{
-  background-color: transparent;
   width: 80vw;
   display: flex;
   align-items: center;
@@ -65,6 +204,13 @@ background-color: black;
   justify-content: center;
   width: 100vw;
   flex-direction: column;
+}
+
+.main{
+  background-color: #dcdcdc;
+}
+
+.about{
   background-color: #dcdcdc;
 }
 
@@ -116,7 +262,7 @@ background-color: black;
 }
 
 .vid_button span{
-  font-family: Arial Narrow,Arial,sans-serif;
+  font-family: arial,Arial,sans-TimesN;
   color: black;
 }
 
@@ -162,7 +308,7 @@ background-color: black;
 
 .video_flex .vid_button span{
   color: white;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "arial", Arial, sans-TimesN;
   font-weight: 100;
   background-color: transparent;
   padding: 1vw;
@@ -207,13 +353,19 @@ background-color: black;
 
 .fixed_pos p{
   font-size: 1.2vw;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "arial", Arial, sans-TimesN;
   margin: 0;
   line-height: 110%;
 }
 
 .fixed_pos p span{
   border-bottom: 1px solid;
+}
+
+
+.txt_about div:first-child p{
+  font-size: 2vw;
+font-family: timesN;
 }
 
 
@@ -249,6 +401,11 @@ width: 50%;
 }
 
 
+footer{
+  width: 100vw;
+  height: 20vh;
+}
+
 
 .horizontal_img_80vw{
   display: flex;
@@ -274,7 +431,7 @@ width: 80%;
 
 .desc p{
   font-size: 1.4vw;
-  font-family: arial narrow;
+  font-family: arial;
   margin: 1vw;
 }
 
@@ -324,31 +481,10 @@ width: 80%;
   padding: 0.3vw;
   background-color: black;
   color: black;
-  font-family: arial narrow;
+  font-family: arial;
   font-weight: lighter;
 }
 
-
-.logs{
-  display: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  color: white;
-  margin: 3vw;
-  z-index: 10;
-  background-color: black;
-  padding: 1vw;
-  border-radius: 20px;
-  margin-right: 1vw;
-  font-family: sans-serif;
-}
-
-.logs span{
-  font-family: sans-serif;
-  font-weight: lighter;
-  color: white;
-}
 
 .gene_wrapper{
   width: 100vw;
@@ -358,13 +494,109 @@ width: 80%;
 }
 
 
-#intro{
-  margin-top: 3vw;
-  padding-bottom: 9vw;
-  border-bottom: 2px solid;
+#intro_text{
+  position: absolute;
+  width: 95vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  margin-top: 6vw;
+  display: none;
 }
 
-#intro h1 span{
+#intro_text span{
+  font-size: 1.6vw;
+  color: black;
+  padding: 0.5vw;
+  font-family: sans-TimesN;
+  width: 40vw;
+}
+
+
+#intro_buttons{
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+  display: flex;
+  align-items: center;
+  width: 95vw;
+}
+
+#intro_buttons span{
+  font-family: TimesN;
+  font-size: 1.6vw;
+  margin: 0.4vw;
+  background-color: black;
+  color: white;
+  padding: 0.5vw;
+  border-radius: 10px;
+}
+
+#intro_buttons h1{
+  font-weight: lighter;
+  margin-right: 0;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  font-family: arial;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#intro_buttons h1:last-child{
+  font-weight: lighter;
+  margin-right: 0;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  /* font-size: 1.8vw; */
+  /* font-family: TimesN; */
+  font-family: arial;
+  border-bottom: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.process #intro_buttons{
+  margin-bottom: 4vw;
+}
+
+
+.process .video_main span{
+  border-bottom: none;
+  color: white;
+  font-family: arial;
+}
+
+
+.process #intro_buttons:last-child{
+  margin: 0;
+  margin-bottom: 6vw;
+}
+
+.process .video_main h1{
+  margin-bottom: 3vw;
+  color: white;
+  margin: 0;
+}
+
+.process #intro_buttons:last-child h1{
+  font-family: TimesN;
+}
+
+.process #intro_buttons:last-child h1:first-child{
+  font-family: arial;
+  margin-bottom: 1vw;
+}
+
+#intro_buttons .left_buttons{
+  display: flex;
+  align-items: baseline;
+  width: 40%;
+}
+
+
+#intro_buttons h1 span{
   background-color: black;
   color: white;
   border-radius: 10px;
@@ -400,20 +632,31 @@ width: 80%;
   display: block;
 }
 
-#intro h1{
-  margin: 0;
-  font-family: arial narrow;
-  font-size: 2.8vw;
-  color: black;
-  font-weight: lighter;
-  text-transform: uppercase;
+
+.txt_about{
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  width: 95vw;
+}
+
+.txt_about div:first-child{
+  width: 70%;
 }
 
 
-#intro:last-child{
-  margin-top: 6vw;
-  margin-bottom: 4vw;
-  transform: rotate(180deg);
+.about #intro_buttons span{
+  color: #dcdcdc;
+  background-color: black;
+}
+
+
+.about .right_buttons{
+  display: none;
+}
+
+.txt_about div:last-child{
+  width: 30%;
 }
 
 
@@ -430,7 +673,7 @@ width: 80%;
   margin-bottom: 1.5vw;
   width: 50vw;
   font-size: 3vw;
-  font-family: "Arial Narrow", Arial, sans-serif;
+  font-family: "arial", Arial, sans-TimesN;
   display: list-item;
   list-style-type: disc;
   list-style-position: inside;
@@ -455,7 +698,7 @@ padding-bottom: 4vw;
 
 
 #project p{
-  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,TimesN;
   color: #000;
   background-color: transparent;
   font-size: 1.7vw;
@@ -486,10 +729,11 @@ video{
   width: 99%;
   height: 100%;
   margin-bottom: 1vw;
+  box-shadow: 0 0 75px 0 black;
 }
 
 .component_info p{
-  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,TimesN;
   color: #000;
   background-color: transparent;
   font-size: 1.7vw;
@@ -511,7 +755,7 @@ video{
 .single_span{
   border-bottom: 1px solid;
     color: black;
-    font-family: "Arial Narrow", Arial, sans-serif;
+    font-family: "arial", Arial, sans-TimesN;
     font-size: 1.5vw;
 }
 
@@ -553,20 +797,13 @@ video{
     font-size: 4vw;
   }
 
-  #intro{
+  #intro_buttons{
         border-bottom: 1px solid;
         margin-bottom: 0;
         padding-bottom: 9vw;
   }
 
-  #intro h1{
-    font-size: 4vw;
-    width: 80vw;
-  }
 
-  #intro h1:last-child{
-    margin-top: 5vw;
-  }
 
   .flex_div{
     flex-direction: column;
