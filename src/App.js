@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import ReactInterval from 'react-interval';
 import './App.css';
-import Typist from 'react-typist';
 import VideoWrapper from "./VideoWrapper";
+import IdleTimer from 'react-idle-timer';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-import ScrollToBottom from 'react-scroll-to-bottom';
+import ScrollableFeed from 'react-scrollable-feed'
 import styled, { keyframes } from 'styled-components'
 import axios from 'axios';
 var scrollPosition = require('scroll-xy');
 var emoji = require('node-emoji')
-
-
+var now = require("date-now")
 
 
 class App extends Component {
@@ -18,17 +17,33 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bubbles: "none",
       logsRunning: true,
-      count: 1,
+      userIsActive: true,
+      userDataFromIpPackage: "",
+      userDataFromIpLogs: "",
+      count: 3,
       displayBubbleDots: "flex",
       main: true,
       ip_user: "",
-      renderedArrayLogs: [],
+      info: ["Hey there, I’m Cyrus and this is my design and code practice. Under the 75-20 moniker, I’m designing and programming websites and applications for a variety of clients - mostly related to the cultural field. I’m also an practice-based researcher/scholar and a human living currently in Montréal.",
+      "I was first trained as a graphic and a book designer before jumping into the programming world. I therefore have a very keen interest for typography and (swiss or dutch; geometric or chaotic) grid systems. I like contrast, I like details, I like colors, I like black and white. I like designing under constraints.",
+      "I’m also very enthusiastic about the internet, the browser, creative coding and the JavaScript programming language. Using the browser as a playground, I’m therefore very keen to investigate and create through code all kinds of strategies and narratives to develop sur-mesure experiences and interactions. I like websites that are both complex and simple at the same time, where différents niveaux de lectures are stacked."],
       logs: [
-        "Hello there internet user.",
-        "I'm Cyrus and this is my code/design practice",
-        "I'm also an artist and a scholar and you can find my projects here",
+        "Dear Internet user, thanks for hitting the INFO button.",
+        "My name is Cyrus and this is my design and code practice.",
+        "Yup! Sometimes I design and code, sometimes I just code for designers.",
+        "In a parallel life, I’m also a critical engineering researcher pursuing a master’s degree at Concordia University.",
+        "I was first trained as a graphic designer. <br /> I therefore have a very keen interest in typography, grid systems and visual strategies.",
+        "I now strive to combine these with code - and  the possibilities code can bring for playful, weird, alien, brutal, dense interactions.",
+        "That’s right... I see the web as a very exciting interactive and collaborative canvas.",
+        "Ok, enough talking for now ;-)",
+        "I’m always open to all sorts of collaborations and freelance work, both for small and bigger digital projects.",
+        "But if you only want to say or have a chat and talk about the weather, this is also great.",
+        "Bye for now, and take care"
+
+      ],
+      logsInactive: [
+
       ],
       processData: [
         [
@@ -47,15 +62,22 @@ class App extends Component {
           }
         ]
       ],
+      processDataText: [
+        "Other current projects includes:",
+        "- Frederique B. Sainte-Marie",
+        "- St-Henri Librairy. Design by St-Henri Librairy & James Oh",
+        "- Étienne Chartrand V2",
+        "- Gab Rei V2"
+      ],
       mainData: [
         [
           {
-            h1: "1/7 - Website for Alicia Mersy. ",
+            h1: "PROJECT #1/7 - Website for Alicia Mersy. ",
             source: [
               "http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1520974034/Alicia_4K_r08rne.mp4"
             ],
             span: "www.aliciamersy.com",
-            link: "http://aliciamersy.com/",
+            link: "http://aliciamersy.com",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg",
@@ -67,12 +89,12 @@ class App extends Component {
         ],
         [
           {
-            h1: "2/7 - Website for Gene Tellem. With help from Conan Lai.",
+            h1: "PROJECT #2/7 - Website for Gene Tellem. With help from Conan Lai.",
             source: [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544570682/V3_af2fse.mov"
             ],
             span: "www.genetellem.pro",
-            link: "http://aliciamersy.com/",
+            link: "http://genetellem.pro",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg",
@@ -84,7 +106,7 @@ class App extends Component {
         ],
         [
           {
-            h1: "3/7 - Website for Étienne Chartrand. ",
+            h1: "PROJECT #3/7 - Website for Étienne Chartrand. ",
             source: [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544570050/v4_imhvvm.mov",
             ],
@@ -101,15 +123,12 @@ class App extends Component {
         ],
         [
           {
-            h1: "4/7 - OLD Websites for Vie d'ange (More to come soon).",
+            h1: "PROJECT #4/7 -  Websites for Vie d'ange (More to come soon)",
             source: [
-              "http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1520974034/Alicia_4K_r08rne.mp4",
-              "http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1520974034/Alicia_4K_r08rne.mp4",
-              "http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1520974034/Alicia_4K_r08rne.mp4"
+              "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1547869204/vda_1_gxpnnn.mov"
             ],
-            span: "www.viedange.club",
-            class: "line_through",
-            link: "",
+            span: "viedange.surge.sh",
+            link: "http://viedange.surge.sh",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg",
@@ -121,14 +140,13 @@ class App extends Component {
         ],
         [
           {
-            h1: "5/7 - Website for Jean-François Sauvé. ",
+            h1: "PROJECT #5/7 - Website for Jean-François Sauvé. ",
             source: [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544613328/v1_1_ghio2i.mov",
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544613653/V4_n410kz.mov",
-              "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544613906/v3_kbgddu.mov"
             ],
-            span: "www.aliciamersy.com",
-            link: "http://aliciamersy.com/",
+            span: "www.jeanfrancoissauve.com",
+            link: "http://jeanfrancoissauve.com",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg",
@@ -140,7 +158,7 @@ class App extends Component {
         ],
         [
           {
-            h1: "6/7 - Website for La Rama. ",
+            h1: "PROJECT #6/7 - Website for La Rama records. ",
             source: [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544617495/V3_1_ojjf9u.mov"
             ],
@@ -157,12 +175,12 @@ class App extends Component {
         ],
         [
           {
-            h1: "6/7 - Website for all good. ",
+            h1: "PROJECT #6/7 -  Website for all good. ",
             source: [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544619201/V1_d0lyre.mov"
             ],
-            span: "www.aliciamersy.com",
-            link: "http://aliciamersy.com/",
+            span: "www.allgoodmtl.surge.sh",
+            link: "https://allgoodmtl.surge.sh",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544619201/V1_d0lyre.mov",
@@ -171,12 +189,12 @@ class App extends Component {
         ],
         [
           {
-            h1: "7/7 - OLD Website for Gab-Rei (more to come soon).",
+            h1: "PROJECT #7/7 -  Website for Gab-Rei.",
             source: [
               "http://res.cloudinary.com/www-c-t-l-k-com/video/upload/v1544568848/V1_cgur4u.mov",
             ],
-            span: "www.aliciamersy.com",
-            link: "http://aliciamersy.com/",
+            span: "www.gabrielrei.com",
+            link: "http://www.gabrielrei.com/",
             pre_img: "",
             img : [
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526933788/3_icfqlh.jpg",
@@ -185,22 +203,17 @@ class App extends Component {
               "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1526934840/3_tvmllo.jpg"
             ]
           }
-        ],
+        ]
       ]
     }
     this.triggerClickMain = this.triggerClickMain.bind(this);
+    this.idleTimer = null;
+    this.onActive = this._onActive.bind(this);
+    this.onIdle = this._onIdle.bind(this);
+
   }
 
   componentDidMount(){
-
-
-    axios.get("https://api.ipify.org?format=json")
-    .then((response) => {
-      console.log(response.data.ip);
-      this.setState({
-        ip_user: response.data.ip
-      })
-    })
 
     document.body.style.backgroundColor = "black";
     window.scrollTo(0, 0);
@@ -213,18 +226,31 @@ class App extends Component {
       })
     }
 
+    _onActive(e) {
+      console.log('user is  active', e)
+      this.setState({
+        userIsActive: true
+      })
+    }
+
+    _onIdle(e) {
+      console.log('user is not active', e)
+      this.setState({
+        userIsActive: true
+      })
+    }
+
+
     componentDidUpdate(){
 
       if(this.state.count === this.state.logs.length+1){
         this.setState({
-          count: 1,
+          count: 3,
         })
       }
-
-      if(this.state.main === false){
-
+      if(this.state.main === false || this.state.userIsActive === false){
+        window.scrollTo(0,document.body.scrollHeight);
       }
-
     }
 
 
@@ -232,12 +258,20 @@ class App extends Component {
 
         const mainDataRender = this.state.mainData.map((ele, index) => {
           return (
-            <VideoWrapper props={this.state.mainData[index]} key={index}/>
+            <VideoWrapper
+               data={this.state.mainData[index]}
+               key={index}/>
           )
         })
         const processDataRender = this.state.processData.map((ele, index) => {
           return (
             <VideoWrapper props={this.state.processData[index]} key={index}/>
+          )
+        })
+
+        const processDataTextRender = this.state.processDataText.map((ele, index) => {
+          return (
+            <h1 key={index}>{ele}</h1>
           )
         })
 
@@ -268,86 +302,105 @@ class App extends Component {
          return arrayOfBubbles;
         }
 
-        if(this.state.main === true && this.state.ip_user.length > 0){
+        if(this.state.main === true
+          && this.state.userIsActive === true){
+
+            const emojisRendered = this.state.emojis
+            .map((ele, index) => {
+              return(
+                <div key={index}>
+                {ReactHtmlParser(ele)}
+                </div>
+              )
+            })
 
           return (
+
+            <div>
+
+            <IdleTimer
+           ref={ref => { this.idleTimer = ref }}
+           element={document}
+           onActive={this.onActive}
+           onIdle={this.onIdle}
+           timeout={4000*10}>
+
+            <main className="logs_first_fold">
+              <div className="logs_first_fold_inner">
+              {emojisRendered}
+              </div>
+            </main>
+
+
+
               <div className="App main">
-
-
                   <div className="main">
                   <section id="intro_buttons">
                       <div className="left_buttons">
                       <span>EMAIL</span>
                       <span>GITHUB</span>
                       <span>PGP KEY</span>
-                      <span onClick={this.triggerClickMain}>INFO</span>
                       </div>
                       <div className="right_buttons">
-                      <h1>Hello there IP: {this.state.ip_user}, welcome to my website.</h1>
-                      <h1>Here you'll find a selection of my latest projects. For more, hit info.</h1>
+                      <h1>Hey there - welcome to my website. It's currently 20:30 in Montréal.</h1>
+                      <h1>I'm Cyrus and this is my design and programming practice.</h1>
                       </div>
                   </section>
                   </div>
                   {mainDataRender}
                   <div className="process">
-                  <section id="intro_buttons">
-                      <div className="left_buttons">
-                      <span>EMAIL</span>
-                      <span>GITHUB</span>
-                      <span>PGP KEY</span>
-                      <span onClick={this.triggerClickMain}>INFO</span>
-                      </div>
-                      <div className="right_buttons">
-                      <h1>Hello there IP: {this.state.ip_user}, glad you're still here ;-)</h1>
-                      <h1>Here you'll find a first glimpse of the projects I'm currently working on.</h1>
-                      </div>
-                  </section>
                   {processDataRender}
                   <section id="intro_buttons">
                       <div className="left_buttons">
                       </div>
                       <div className="right_buttons">
-                      <h1>Other current projects includes:</h1>
-                      <h1>- Frederique B. Sainte-Marie, Set Designer</h1>
-                      <h1>- St-Henri Librairy. Design by St-Henri Librairy & James Oh</h1>
-                      <h1>- Étienne Chartrand V2</h1>
-                      <h1>- Gab Rei V2</h1>
+                      {processDataTextRender}
                       </div>
                   </section>
                   </div>
                   <footer>
+                    <section>
+                      <div>
+                      <h1>(Back to top)</h1>
+                      </div>
+                      <div>
+                      <h1>Udpdated: <span>Mon Apr 19 1976 12:59:00 GMT-0500</span></h1>
+                      <h1>CODE VERSION OF THE WEBSITE HERE</h1>
+                      </div>
+                    </section>
                   </footer>
               </div>
+              </IdleTimer>
+
+            </div>
           );
         }else if(this.state.main === false
           && this.state.ip_user.length > 0
-          && this.state.logsRunning === true){
+          && this.state.userIsActive === true){
 
-            console.log("true?");
-
-          const returnLogs = this.state.logs.slice(0, this.state.count)
-          .map((ele, index) => {
-            return <div className="bubbles" key={index}>
-            <h1>
-            {ReactHtmlParser(ele)}
-            </h1>
-            </div>
-          })
+            const returnSpans = this.state.info
+            .map((ele, index) => {
+              return (
+                <div className="spans_container">
+                  <p>
+                  {ReactHtmlParser(ele)}
+                  </p>
+                </div>
+              )
+            })
 
 
           return (
+
+            <IdleTimer
+           ref={ref => { this.idleTimer = ref }}
+           element={document}
+           onActive={this.onActive}
+           onIdle={this.onIdle}
+           timeout={4000*10}>
+
             <div className="App about">
-
             <section className="fixed_background" />
-
-
-            <ReactInterval timeout={6000} enabled={true}
-            callback={
-              () => this.setState({
-                logsRunning: false,
-                count: this.state.count+1
-              })} />
-
             <section id="intro_buttons">
                 <div className="left_buttons">
                 <span>EMAIL</span>
@@ -357,65 +410,19 @@ class App extends Component {
                 </div>
             </section>
             <section className="background_info">
-            <div className="bubbles_container_outer">
-                <div className="bubbles_container">
-                <div className="bubbles_logs">
-                  {returnLogs}
-                </div>
-                </div>
-                <section>
-                <div style={{display: this.state.displayBubbleDots}}>
-                  {returnBubbles()}
-                </div>
-                </section>
-              </div>
+                {returnSpans}
             </section>
         </div>
+        </IdleTimer>
           )
-        }else if(this.state.main === false
-          && this.state.ip_user.length > 0
-          && this.state.logsRunning === false){
-
-            const returnLogs = this.state.logs.slice(0, this.state.count)
-            .map((ele, index) => {
-              return <div className="bubbles" key={index}>
-              <h1>
-              {ReactHtmlParser(ele)}
-              </h1>
-              </div>
-            })
-
-
-            return (
-              <div className="App about">
-              <section className="fixed_background" />
-              <ReactInterval timeout={6000} enabled={true}
-              callback={
-                () => this.setState({
-                logsRunning: true
-                })} />
-              <section id="intro_buttons">
-                  <div className="left_buttons">
-                  <span>EMAIL</span>
-                  <span>GITHUB</span>
-                  <span>PGP KEY</span>
-                  <span onClick={this.triggerClickMain}>PROJECTS</span>
-                  </div>
-              </section>
-                  <section className="background_info">
-                  <div className="bubbles_container_outer">
-                      <div className="bubbles_container">
-                      <div className="bubbles_logs">
-                        {returnLogs}
-                      </div>
-                      </div>
-                    </div>
-                  </section>
-              </div>
-            )
+        }else if(this.state.userIsActive === false){
+          return(
+            <div></div>
+          )
         }else{
-          return (
+          return(
             <div>
+              loading
             </div>
           )
         }

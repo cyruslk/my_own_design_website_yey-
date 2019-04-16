@@ -3,9 +3,64 @@
   src: url('fonts/TimesN.otf');
 }
 
+@font-face {
+  font-family: 'AtlasGrotesk-Light';
+  src: url('fonts/AtlasGrotesk-Light.otf');
+}
+
 
 html, body{
   overflow-x: hidden;
+}
+
+.spans_container{
+  display: block;
+  margin-bottom: 3vw;
+}
+
+.spans_container p{
+    margin: 0;
+    font-size: 3vw;
+}
+
+.ag-snow-fall {
+  width: 100vw;
+  height: 100%;
+  background-color: #000;
+}
+
+
+.logs_first_fold{
+  height: 100vh;
+  width: 100vw;
+  background-color: lightgreen;
+  color: white;
+  justify-content: center;
+  display: none;
+}
+
+.logs_first_fold_inner{
+  width: 95vw;
+}
+
+.logs_first_fold .logs_first_fold_inner div{
+  font-family: times;
+  font-weight: bolder;
+  font-size: 1.3vw;
+  color: black;
+  display: inline-block;
+  padding: 1.3vw;
+}
+
+
+.about #intro_buttons{
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 1vw;
+  border-top: 1px solid;
+  padding-top: 1vw;
+  background-color: #dcdcdc;
+  margin: 0;
 }
 
 .line_through{
@@ -14,9 +69,22 @@ html, body{
   cursor: text;
 }
 
+.background_info{
+  width: 95vw;
+  margin-top: 1vw;
+  font-size: 3.8vw;
+  font-family: timesN;
+  margin-top: 4vw;
+}
+
+
+.background_info .span_1{
+  color: blue;
+}
+
 .fixed_background{
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: #dcdcdc;
   position: fixed;
   top: 0;
@@ -24,12 +92,23 @@ html, body{
 }
 
 .process{
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #181818;
+  background-color: #dcdcdc;
   flex-direction: column;
+  padding-top: 6vw;
+}
+
+.dots_container{
+  background-color: white;
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  border-radius: 40px;
 }
 
 
@@ -42,8 +121,8 @@ html, body{
 
 .sub_dots{
   background-color: black;
-  width: 1.25vw;
-  height: 1.25vw;
+  width: 1vw;
+  height: 1vw;
   border-radius: 40px;
   margin: 0.25vw;
 }
@@ -76,30 +155,33 @@ html, body{
   display:inline-block;
   margin-bottom: 1vw;
   width: fit-content;
+  pbox-shadow: 0 0 75px 0 white;
 }
 
 .bubbles_container_outer {
   width: 95vw;
-  margin-bottom: 6vw;
+  margin-bottom: 1vw;
 }
 
 .bubbles_logs{
   display: flex;
   flex-direction: column;
-  margin-bottom: 3vw;
 }
 
 
 .bubbles h1{
-  font-size: 6vw;
+  font-size: 5vw;
   padding: 3vw;
   margin: 0;
+  font-weight: 100;
+  font-family: timesN;
 }
 
-.bubbles h1 span{
-  border-bottom: 4px solid black;
-  font-family: arial;
+.internet{
+  color: blue;
 }
+
+
 
 .process #intro_buttons span{
   background-color: white;
@@ -122,7 +204,7 @@ a{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   flex-direction: column;
   padding-top: 2vw;
 padding-bottom: 2vw;
@@ -143,6 +225,7 @@ background-color: black;
   padding-top: 3vw;
   padding-bottom: 3vw;
   margin-bottom: 4vw;
+  box-shadow: 6px 10px 17px 0;
 }
 
 .test{
@@ -169,7 +252,7 @@ background-color: black;
 .video_main h1{
   margin-top: 3vw;
   font-family: TimesN;
-  font-size: 1.6vw;
+  font-size: 1.4vw;
   color: black;
   font-weight: lighter;
   text-transform: uppercase;
@@ -177,9 +260,9 @@ background-color: black;
 
 .video_main span{
   color: black;
-  /* background-color: black; */
   padding: 0.3vw;
   border-bottom: 1px solid;
+  font-family: arial black;
 }
 
 .video_wrapper_inner{
@@ -202,27 +285,18 @@ background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   flex-direction: column;
 }
 
 .main{
-  background-color: #dcdcdc;
+  background-color:  #dcdcdc;
 }
 
 .about{
   background-color: #dcdcdc;
 }
 
-
-.slick-slider{
-  width: 80vw;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
 
 .video{
   background-color: black;
@@ -248,271 +322,42 @@ background-color: black;
 }
 
 
-.video_wrapper .vid_button{
-  z-index: 10000;
-  display: none;
-}
-
-.vid_button{
-  background-color: transparent;
-  padding: 1vw;
-  border-radius: 20px;
-  border: 1px solid;
-  margin-left: 1vw;
-}
-
-.vid_button span{
-  font-family: arial,Arial,sans-TimesN;
-  color: black;
-}
-
-
-.flex_div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 96vw;
-}
-
-.block{
-  display: block;
-  background-color: none;
-}
-
-
-.video_flex{
-  background-color: #202020;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-
-.video_flex .component_info h1{
-  color: white;
-}
-
-.video_flex .component_info span{
-  color: white;
-  border-bottom: 1px solid white;
-}
-
-.video_flex .vid_button{
-  border: 1px solid white;
-}
-
-.video_flex .vid_button span{
-  color: white;
-  font-family: "arial", Arial, sans-TimesN;
-  font-weight: 100;
-  background-color: transparent;
-  padding: 1vw;
-  border-radius: 20px;
-  border: none;
-  margin-left: 1vw;
-}
-
-.flex_div div{
-  width: 50vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex_div div img{
-  width: 99%;
-    margin-bottom: 1vw;
-}
-
-.fixed_pos{
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  left: 1vw;
-  z-index: 1;
-  margin-top: 2vw;
-  display: none;
-}
-
-.process_bar{
-  position: absolute;
-  left: 0;
-  width: 0.4vw;
-  height: 100vh;
-  background-color: black;
-  z-index: 10;
-  top: 0;
-  box-shadow: 0 0 75px 0 black;
-  display: none;
-}
-
-.fixed_pos p{
-  font-size: 1.2vw;
-  font-family: "arial", Arial, sans-TimesN;
-  margin: 0;
-  line-height: 110%;
-}
-
-.fixed_pos p span{
-  border-bottom: 1px solid;
-}
-
-
-.txt_about div:first-child p{
-  font-size: 2vw;
-font-family: timesN;
-}
-
-
-.desc{
-  width: 100vw;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: left;
-  -ms-flex-pack: center;
-  justify-content: left;
-  background-color: #dcdcdc;
-}
-
-.horizontal_img{
-  display: flex;
-align-items: center;
-justify-content: center;
-background-color: black;
-padding: 2vw;
-}
-
-.horizontal_img_50vw{
-  display: flex;
-align-items: center;
-justify-content: center;
-width: 50%;
-}
-
-.horizontal_img_50vw img{
-  width: 90%;
-  box-shadow: 0 0 75px 0 #fff;
-}
-
 
 footer{
-  width: 100vw;
-  height: 20vh;
-}
-
-
-.horizontal_img_80vw{
-  display: flex;
-align-items: center;
-justify-content: center;
-width: 80%;
-}
-
-.horizontal_img_80vw img{
-  width: 90%;
-  box-shadow: 0 0 75px 0 #fff;
-}
-
-
-.desc span{
-  border-bottom: 1px solid black;
-}
-
-.big_img{
-  width: 70vw;
-}
-
-
-.desc p{
-  font-size: 1.4vw;
-  font-family: arial;
-  margin: 1vw;
-}
-
-.poster_project{
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
-  padding: 3vw;
-  margin-top: 1vw;
-  margin-bottom: 2vw;
-}
-
-.poster_project div{
-  width: 31.3%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.poster_project div img{
-  width: 98.5%;
-}
-
-
-
-.video_project{
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 100vw;
-  background-color: #dcdcdc;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  position: relative;
-}
-
-.component_info h1 span{
-  border-radius: 10px;
-  font-size: 1.6vw;
-  text-transform: uppercase;
-  border: 1px solid;
-  padding: 0.3vw;
-  background-color: black;
-  color: black;
-  font-family: arial;
-  font-weight: lighter;
-}
-
-
-.gene_wrapper{
-  width: 100vw;
-  height: 100vh;
-  /* background-color: #303030; */
-  margin-bottom: 2vw;
-}
-
-
-#intro_text{
-  position: absolute;
-  width: 95vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  margin-top: 6vw;
   display: none;
 }
 
-#intro_text span{
-  font-size: 1.6vw;
-  color: black;
-  padding: 0.5vw;
-  font-family: sans-TimesN;
-  width: 40vw;
+footer section div:first-child{
+  width: 40%;
 }
 
+footer section div:last-child{
+  width: 60%;
+}
+
+
+footer section div h1{
+  margin: 0;
+  font-family: timesN;
+  font-weight: lighter;
+  font-size: 1.6vw;
+  text-transform: uppercase;
+  color: #181818;
+}
+
+footer section div span{
+  margin: 0;
+  font-family: arial;
+  font-weight: lighter;
+  font-size: 1.55vw;
+  text-transform: uppercase;
+  letter-spacing: -0.1px;
+  color: #181818;
+}
 
 #intro_buttons{
   margin-top: 4vw;
@@ -524,12 +369,12 @@ width: 80%;
 
 #intro_buttons span{
   font-family: TimesN;
-  font-size: 1.6vw;
   margin: 0.4vw;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 0.5vw;
   border-radius: 10px;
+  border: 1px solid black;
 }
 
 #intro_buttons h1{
@@ -538,24 +383,16 @@ width: 80%;
   background-color: transparent;
   color: black;
   border-radius: 0;
-  font-family: arial;
   margin-top: 0;
   margin-bottom: 0;
+  font-size: 1.4vw;
+  font-family: TimesN;
 }
 
-#intro_buttons h1:last-child{
-  font-weight: lighter;
-  margin-right: 0;
-  background-color: transparent;
-  color: black;
-  border-radius: 0;
-  /* font-size: 1.8vw; */
-  /* font-family: TimesN; */
-  font-family: arial;
-  border-bottom: none;
-  margin-top: 0;
-  margin-bottom: 0;
+#intro_buttons h1:first-child{
+  font-family: arial black;
 }
+
 
 .process #intro_buttons{
   margin-bottom: 4vw;
@@ -564,8 +401,8 @@ width: 80%;
 
 .process .video_main span{
   border-bottom: none;
-  color: white;
-  font-family: arial;
+  color: black;
+  font-size: 1.6vw;
 }
 
 
@@ -576,17 +413,19 @@ width: 80%;
 
 .process .video_main h1{
   margin-bottom: 3vw;
-  color: white;
+  color: black;
   margin: 0;
 }
 
 .process #intro_buttons:last-child h1{
   font-family: TimesN;
+  color: black;
 }
 
 .process #intro_buttons:last-child h1:first-child{
-  font-family: arial;
   margin-bottom: 1vw;
+  font-size: 1.7vw;
+  color: black;
 }
 
 #intro_buttons .left_buttons{
@@ -603,45 +442,12 @@ width: 80%;
   padding: 0.2vw;
 }
 
-.footer{
-  margin-top: 0;
-  margin-bottom: 1vw;
-  align-items: baseline;
-}
-
-.footer h1{
-    font-family: garamond;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  .footer h2{
-      margin: 0;
-    }
-
-.footer span{
-  text-transform: uppercase;
-
-}
-
-.footer .flex_div{
-  justify-content: normal;
-}
-
-.footer .flex_div:last-child{
-  display: block;
-}
-
-
-.txt_about{
+footer section{
+  width: 95vw;
   display: flex;
   align-items: baseline;
-  justify-content: center;
-  width: 95vw;
-}
-
-.txt_about div:first-child{
-  width: 70%;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
 }
 
 
@@ -650,79 +456,19 @@ width: 80%;
   background-color: black;
 }
 
+.inactive_logs{
+  background-color: black;
+}
+
+.inactive_logs .bubbles_container_outer{
+  margin-top: 1vw;
+}
+
 
 .about .right_buttons{
   display: none;
 }
 
-.txt_about div:last-child{
-  width: 30%;
-}
-
-
-.big_title{
-  background-color: #dcdcdc;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.big_title h1{
-  margin-bottom: 1.5vw;
-  width: 50vw;
-  font-size: 3vw;
-  font-family: "arial", Arial, sans-TimesN;
-  display: list-item;
-  list-style-type: disc;
-  list-style-position: inside;
-  text-shadow: 1px 2px 20px #fff;
-
-}
-
-
-.dyptich_project{
-width: 100vw;
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
-padding: 2vw;
--ms-flex-direction: column;
-flex-direction: column;
-position: relative;
-padding-bottom: 4vw;
-
-}
-
-
-#project p{
-  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,TimesN;
-  color: #000;
-  background-color: transparent;
-  font-size: 1.7vw;
-  width: 50vw;
-  border-bottom: 1px solid #000;
-  margin: 0;
-  margin-top: 4vw;
-  margin-bottom: 4vw;
-  display: none;
-
-}
-
-.video_project main{
-  width: 70vw;
-  background-color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.video_project main div{
-  width: auto !important;
-  height: auto !important;
-}
 
 
 video{
@@ -732,59 +478,6 @@ video{
   box-shadow: 0 0 75px 0 black;
 }
 
-.component_info p{
-  font-family: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,TimesN;
-  color: #000;
-  background-color: transparent;
-  font-size: 1.7vw;
-  border-bottom: 1px solid #000;
-  margin: 0;
-  margin-top: 2vw;
-}
-
-.component_info{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 5vw;
-  margin-bottom: 5vw;
-  width: 76vw;
-}
-
-
-.single_span{
-  border-bottom: 1px solid;
-    color: black;
-    font-family: "arial", Arial, sans-TimesN;
-    font-size: 1.5vw;
-}
-
-
-.img_project{
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  background-color: white;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.wrapper_etienne{
-  width: 100vw;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2vw;
-  padding-bottom: 2vw;
-}
-
-
 
 /* IPHONE PORTRAIT */
 @media only screen
@@ -793,36 +486,5 @@ video{
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
 
-  *{
-    font-size: 4vw;
-  }
-
-  #intro_buttons{
-        border-bottom: 1px solid;
-        margin-bottom: 0;
-        padding-bottom: 9vw;
-  }
-
-
-
-  .flex_div{
-    flex-direction: column;
-  }
-
-  .flex_div div{
-    width: 90vw;
-  }
-
-  .component_info h1{
-    font-size: 4vw;
-    text-align: center;
-    width: 86vw;
-  }
-
-  .component_info h1 span{
-    display: block;
-    border-bottom: none;
-    font-size: 4vw;
-  }
 
 }
