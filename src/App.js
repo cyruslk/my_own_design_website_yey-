@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import Typist from 'react-typist';
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
-import _ from "lodash"
+import _ from "lodash";
 import ReactHtmlParser from 'react-html-parser';
 import './App.css';
 import VideoWrapper from "./VideoWrapper";
 import ScreenSaver from "./ScreenSaver"
-import IdleTimer from 'react-idle-timer';
 
 
 class App extends Component {
@@ -16,21 +16,73 @@ class App extends Component {
       userIsActive: true,
       isScrolling: false,
       selectedRandomColor: null,
+      scrollAnimationsArray: null,
+      shuffledArrayData: null,
       isAboutRender: false,
       mainMarginLeft: "0vw",
       counter: 0,
       MaininfoData: [
-        "<h1>Hey there, I’m Cyrus. <span>75-20</span> is my small and indenpendant code and technology practice. Under this moniker, I create and produce websites and apps for a variety of client as well as for myself - taking the form of small experiments and ideas that I usually conduct in the browser (sometimes outside). </h1><h1>I've been first trained as a designer before shifting to full-stack programming. I therefore have a keen interest in typographic systems merged with dynamic programs and codes; with unusual and expected uses of technology online. </h1><h1> I'm now interested to push the boundaries of creative programming outside of the browser and design systems encompassing tangible and sense-able devices. I'm also interested to further explore the intersection between machine learning and design. Oh, and apart from that, I also have a (small) tech-driven research practice.</h1>",
+        "<h1>Hey there, I’m Cyrus. <span>75-20</span> is the small and indenpendant creative-technology practice I run behind my laptop and on the port :3000 of my localhost. Under this moniker, I create and produce websites and apps for a variety of client as well as for my own - taking the form of small experiments and ideas I conduct in the browser and on mobile. </h1><h1>I've been first trained as a designer before shifting to full-stack programming - I therefore have a very keen interest in dynamic typographic systems; and overall with the unusual and weird/expected uses of technology online. </h1><h1> I'm also interested to further explore the intersection between machine learning and design and this could be applied for creative uses. Apart from that, I also have a (small) tech-driven research practice.</h1>",
+      ],
+      EmailData: [
+        "For any inquiries",
+        "you can email me",
+        "mailto:info@c-t-l-k.com",
       ],
       scrollingData: [
-        "<!DOCTYPE html> <br /><html lang='en'><head><br/><meta charset='utf-8'><br/><meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>",
-        "video { <br /> width: 99%; <br /> height: 100%; <br /> margin-bottom: 1vw; <br /> -webkit-box-shadow: 0 0 75px 0 black; <br /> box-shadow: 0 0 75px 0 black;}",
-        "2",
-        "3",
-        "4"
+        {
+          text: "<div>isDisplayedProcess = () => {</div><div>&nbsp;this.setState({</div><div>&nbsp;&nbsp;userIsActive: !this.state.userIsActive</div><div>&nbsp;})</div><div>}</div>",
+          top: "4vw",
+          left: "40vw"
+        },
+        {
+          text: "<div>_onIdle = (e) => {</div><div>&nbsp;this.setState({ </div><div>&nbsp;&nbsp;userIsActive: false </div><div>&nbsp;})</div><div> }</div>",
+          top: "40vw",
+          left: "70vw"
+        },
+        {
+          text: "<div>_onActive = (e) => {</div><div>&nbsp;this.setState({</div><div>&nbsp;&nbsp;userIsActive: true</div><div>&nbsp;})</div><div>}</div>",
+          top: "10vw",
+          left: "34vw"
+        },
+        {
+          text: "<div>import VideoWrapper from './VideoWrapper';</div>",
+          top: "10vw",
+          left: "54vw"
+        },
+        {
+          text: "<div>constructor(props) { </div><div>&nbsp;super(props);</div><div>&nbsp;this.state = { <div>&nbsp;&nbsp;screenSaverData: null</div> }</div>}</div>",
+          top: "40vw",
+          left: "25vw"
+        },
+        {
+          text: "<div>export default ScreenSaver;</div>",
+          top: "2vw",
+          left: "21vw"
+        },
+        {
+          text: "<div>'（ ゜ρ゜)ノ', </div><div>'(✿ヘᴥヘ)', </div><div>'(ㆁᴗㆁ✿)'</div>",
+          top: "4vw",
+          left: "4vw"
+        },
+        {
+          text: "<div>（￣ε￣＠）', </div><div>'（⌒▽⌒）', </div><div>'（ ･`ー･´） +', </div><div>'(´ｰ+｀)', </div>",
+          top: "20vw",
+          left: "34vw"
+        },
+        {
+          text: "<div>footer section div:last-child{</div><div>&nbsp;width: 60%; </div><div>}</div>",
+          top: "10vw",
+          left: "34vw"
+        },
+        {
+          text: "<div>.iddle{</div><div>&nbspbackground-color: #6d6d6d;</div><div>&nbspwidth: 100vw;</div><div>}</div>",
+          top: "5vw",
+          left: "56vw"
+        },
       ],
       randomColors: [
-        "rgb(0, 255, 127)",
+        "blue",
       ],
       mainData: [
         [
@@ -195,7 +247,6 @@ class App extends Component {
             ]
           }
         ],
-
       ],
       processData: [
         "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566817761/proccess/Capture_d_e%CC%81cran_le_2019-08-26_a%CC%80_13.04.11.png",
@@ -235,20 +286,70 @@ class App extends Component {
         "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566826704/proccess/53934092_254404268661346_293227793938907136_n.jpg",
         "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566836880/proccess/Capture-d_e%CC%81cran_-le-2019-08-26-a%CC%80-18.21.22.jpg",
         "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566836880/proccess/Capture-d_e%CC%81cran_-le-2019-08-26-a%CC%80-18.21.39.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566921651/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-03.44.43.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566921652/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-17.49.10.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566921653/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-02.33.34.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566922427/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-18.05.45.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566922426/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-18.06.33.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566922656/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-18.07.10.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566922822/proccess/Capture_d_e%CC%81cran_le_2019-08-27_a%CC%80_18.19.29.png",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566923413/Capture-d_écran_-le-2019-08-27-à-18.27.28_sttgrb.jpg",
+        "https://res.cloudinary.com/www-c-t-l-k-com/image/upload/v1566924296/proccess/Capture-d_e%CC%81cran_-le-2019-08-27-a%CC%80-18.27.40.jpg"
       ]
     }
     this.idleTimer = null;
-    this._timeout = null;
   }
 
-  componentDidMount(){
+   componentDidMount(){
+      this.setState({
+        selectedRandomColor: this.state.randomColors[Math.floor(
+          Math.random()*this.state.randomColors.length
+        )]
+      })
+      this.targetElement = document.querySelector("#body");
 
-    this.setState({
-      selectedRandomColor: this.state.randomColors[Math.floor(Math.random()*this.state.randomColors.length)]
-    })
-    this.targetElement = document.querySelector("#body");
-    window.addEventListener('scroll', this.handleScroll, true);
- }
+      const makeScrollAnimations = () => {
+        let scrollAnimationsArray = _.shuffle(this.state.scrollingData)
+        .map((ele, index) => {
+          const style = {
+            left: ele.left,
+            top:  ele.top,
+            color: "blue",
+          }
+
+          return(
+            <div
+              key={index}
+              style={style}
+              className="scrolling_data">
+              <Typist>
+                {ReactHtmlParser(ele.text)}
+              </Typist>
+            </div>
+          )
+        })
+        this.setState({
+          scrollAnimationsArray
+        })
+      }
+
+      window.addEventListener('scroll', this.handleScroll, true);
+      window.addEventListener('scroll', _.debounce(() => {
+        this.setState({
+          isScrolling: false,
+        }, () => {
+          if(this.state.counter !== this.state.scrollingData.length-1){
+            this.setState({
+              counter: this.state.counter+1
+            })
+          }else{
+            this.setState({
+              counter: 0
+            })
+          }
+        })
+      }, 500))
+   }
 
     triggerIsAboutRender = () => {
       this.setState({
@@ -263,22 +364,20 @@ class App extends Component {
     }
 
     handleScroll = (event) => {
-      console.log("dvdfvdv");
       this.setState({
-        isScrolling: true
+        isScrolling: true,
+        shuffledArrayData: _.shuffle(this.state.scrollingData)[this.state.counter]
       })
     };
 
 
     _onActive = (e) => {
-      console.log('user is  active', e)
       this.setState({
         userIsActive: true
       })
     }
 
     _onIdle = (e) => {
-      console.log('user is not active', e)
       this.setState({
         userIsActive: false
       })
@@ -293,6 +392,31 @@ class App extends Component {
 
     render() {
 
+      const renderScrollingContent = () => {
+           if(this.state.isScrolling && this.state.scrollingData.length > 0){
+             let scrollingDataEle = this.state.scrollingData[this.state.counter];
+
+             const style = {
+               left: scrollingDataEle.left,
+               top:  scrollingDataEle.top,
+               color: "blue",
+             }
+
+             return (
+               <div
+                 style={style}
+                 className="scrolling_data">
+                 <Typist>
+                   {ReactHtmlParser(scrollingDataEle.text)}
+                 </Typist>
+               </div>
+             )
+           }else{
+             return null;
+           }
+       }
+
+
         const projectsRender = this.state.mainData
         .map((ele, index) => {
           return (
@@ -300,7 +424,8 @@ class App extends Component {
                selectedRandomColor={this.state.selectedRandomColor}
                animation={this.state.animation}
                data={this.state.mainData[index]}
-               key={index}/>
+               key={index}
+            />
           )
         })
 
@@ -310,65 +435,63 @@ class App extends Component {
               <div
                 onClick={this.triggerIsAboutRender}
                 className="about_render_container">
-              <div className="about_render">
-                {ReactHtmlParser(this.state.MaininfoData)}
-              </div>
+                  <div className="about_render">
+                    {ReactHtmlParser(this.state.MaininfoData)}
+                  </div>
             </div>
-
             )
           }else return null;
         }
 
-
-        const renderScrollingContent = () => {
+        const headerRender = () => {
           return (
-            <div
-              style={{color: this.state.selectedRandomColor}}
-              className="scrolling_data">
-              {this.state.scrollingData[1]}
-            </div>
+            <header className="header_container">
+              <section>
+                <h1>
+                  75-20:
+                </h1>
+                <h1>
+                  Small practice for code and design, design and code.
+                </h1>
+              </section>
+              <section>
+                <span
+                  style={{backgroundColor: this.state.selectedRandomColor}}>
+                  <a
+                  style={{color: "white"}}
+                  href="mailto:info@c-t-l-k.com">
+                    EMAIL
+                  </a>
+                </span>
+                <span
+                  style={{backgroundColor: this.state.selectedRandomColor}}
+                  onClick={this.triggerIsAboutRender}>
+                  ABOUT
+                </span>
+                <span
+                  style={{backgroundColor: this.state.selectedRandomColor}}
+                  onClick={this.isDisplayedProcess}>
+                    ARCHIVES
+                </span>
+              </section>
+            </header>
           )
-
         }
+
 
         if(!this.state.selectedRandomColor){
           return (
               <div>
+                  loading
               </div>
           )
         }else if(this.state.userIsActive){
           return (
-            <div onScroll={this.handleScroll}>
-                  {renderScrollingContent()}
+            <div>
+                {renderScrollingContent()}
                   <div
-                    style={{marginLeft: this.state.mainMarginLeft}}
                     className="App main">
-                    <header className="header_container">
-                      <section>
-                        <h1>
-                          75-20:
-                        </h1>
-                        <h1>
-                          A small practice for code and design, design and code.
-                        </h1>
-                      </section>
-                      <section>
-                        <span
-                          style={{backgroundColor: this.state.selectedRandomColor}}>
-                          EMAIL
-                        </span>
-                        <span
-                          style={{backgroundColor: this.state.selectedRandomColor}}
-                          onClick={this.triggerIsAboutRender}>
-                          ABOUT
-                        </span>
-                        <span
-                          style={{backgroundColor: this.state.selectedRandomColor}}
-                          onClick={this.isDisplayedProcess}>
-                            ARCHIVES
-                        </span>
-                      </section>
-                    </header>
+                      {headerRender()}
                       {projectsRender}
                   </div>
                   {aboutRender()}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from "lodash";
 import './App.css';
 
 class ScreenSaver extends Component {
@@ -13,7 +14,7 @@ class ScreenSaver extends Component {
   componentDidMount(){
     if(this.props){
       this.setState({
-        screenSaverData: this.props.processData
+        screenSaverData: _.shuffle(this.props.processData)
       })
     }
   }
@@ -31,7 +32,6 @@ class ScreenSaver extends Component {
             return nameFile[nameFile.length - 1]
           }
 
-          console.log(returnNameFile());
 
           return (
             <div className="iddle_img_div">
@@ -55,7 +55,6 @@ class ScreenSaver extends Component {
                 style={{borderBottom: `1px solid ${this.props.selectedRandomColor}`}}
                 >
                 <h1
-                  style={{color: this.props.selectedRandomColor}}
                   onClick={this.props.isDisplayedProcess}>
                   BACK
                 </h1>

@@ -1,34 +1,15 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import _ from "lodash";
 import './App.css';
 
 class VideoWrapper extends Component {
 
-  constructor(props) {
-   super(props);
-   this.state = {
-     isStopScrolling: true
-   };
-   this._timeout = null;
-  }
 
-  componentDidMount(){
-    window.addEventListener('scroll', this.handleScroll, true);
-  }
-
-   handleScroll = () => {
-    console.log("vdfvdf");
-    this.setState({
-      isStopScrolling: false
-    })
-  }
 
     render() {
-
       if(!this.props.data){
         return(
-          <div>loading</div>
+          <div className="loading">loading</div>
         )
       }else{
         const data = this.props.data[0];
@@ -47,7 +28,6 @@ class VideoWrapper extends Component {
             </div>
           )
         })
-
 
         const returnAdditionalImages = () => {
           if(data.img && data.additional_type === "screenshots"){
@@ -89,6 +69,7 @@ class VideoWrapper extends Component {
                 <span className={data.class}>
                   <a
                     href={data.link}
+                    style={{color: this.props.selectedRandomColor}}
                     target="_blank"
                     className={data.class}>
                       {data.span}
