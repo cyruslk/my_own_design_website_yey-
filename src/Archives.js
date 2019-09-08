@@ -2,29 +2,29 @@ import React, {Component} from 'react';
 import _ from "lodash";
 import './App.css';
 
-class ScreenSaver extends Component {
+class Archives extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      screenSaverData: null
+      ArchivesData: null
     }
   }
 
   componentDidMount(){
     if(this.props){
       this.setState({
-        screenSaverData: _.shuffle(this.props.processData)
+        ArchivesData: _.shuffle(this.props.processData)
       })
     }
   }
     render(){
-      if(!this.state.screenSaverData){
+      if(!this.state.ArchivesData){
         return (
           <div>loading</div>
         )
       }else{
-        const renderedData = this.state.screenSaverData
+        const renderedData = this.state.ArchivesData
         .map((ele, index) => {
 
           const returnNameFile = () => {
@@ -49,14 +49,13 @@ class ScreenSaver extends Component {
           )
         })
         return(
-          <div className="iddle_inner">
+          <div className="archives_inner">
             <header className="header_container">
-              <section
-                style={{borderBottom: `1px solid ${this.props.selectedRandomColor}`}}
-                >
-                <h1
-                  onClick={this.props.isDisplayedProcess}>
-                  BACK
+              <section>
+                <h1>
+                  <span>
+                    ARCHIVES
+                  </span>
                 </h1>
               </section>
             </header>
@@ -70,4 +69,4 @@ class ScreenSaver extends Component {
     }
 }
 
-export default ScreenSaver;
+export default Archives;

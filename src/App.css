@@ -19,20 +19,6 @@
 }
 
 
-#s_1{
-  margin-left: 0;
-}
-#s_2{
-  margin-left: 10px;
-}
-#s_3{
-  margin-left: 20px;
-}
-#s_4{
-  margin-left: 30px;
-}
-
-
 *{
   outline:0;
   -webkit-overflow-scrolling: touch;
@@ -40,7 +26,7 @@
 
 
 html{
-  background-color: black;
+  background-color: red;
 }
 
 html, body{
@@ -403,19 +389,62 @@ font-family: zapfino;
          transform: rotate(5deg);
 }
 
-.random_display_0,
-.random_display_1,
-.random_display_2,
-.random_display_3,
-.random_display_4,
-.random_display_5,
-.random_display_6,
-.random_display_7,
-.random_display_8,
-.random_display_9{
-  font-size: 3vw;
+.about_container{
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
 }
 
+.about_container main span{
+  display: block;
+font-family: TimesN;
+color: red;
+font-size: 4vw;
+}
+
+
+
+.about_container main span:last-child{
+  font-family: arial black;
+}
+
+.about_container main span:last-child a{
+  text-decoration: underline;
+}
+
+
+.about_container .header_container{
+  align-items: baseline;
+  padding-top: 2vw;
+}
+
+.about_container .header_container section{
+  margin-bottom: 1vw;
+}
+
+.about_container_inner{
+  width: 95vw;
+  margin-bottom: 2vw;
+}
+
+.about_container div h1{
+  margin: 0;
+  background-color: #f8f8f8;
+  border-radius: 50px;
+  font-family: TimesN;
+  font-size: 2.7vw;
+  font-weight: 100;
+  color: black;
+  margin-bottom: 2vw;
+}
+
+.about_container div h1:nth-child(odd){
+  font-family: Inconsolata;
+  color: red;
+}
 
 .process .intro_buttons span{
   background-color: black;
@@ -450,16 +479,6 @@ font-family: zapfino;
     z-index: 10000;
     cursor: pointer;
   }
-
-a{
-  color: white;
-  text-decoration: none;
-}
-
-span a{
-  color: blue;
-}
-
 
 header > a{
   color: white;
@@ -554,7 +573,6 @@ background-color: black;
 .video_main h1{
   font-family: TimesN;
   font-size: 4.5vw;
-  color: black;
   font-weight: lighter;
   margin: 0;
 }
@@ -577,7 +595,6 @@ background-color: black;
 
 
 .info_video div:last-child{
-  width: 60%;
   text-transform: uppercase;
   font-weight: 100;
   color: black;
@@ -589,7 +606,7 @@ background-color: black;
 .info_video div:last-child span{
   color: black;
   font-size: 4.5vw;
-  font-family: TimesN;
+  font-family: arial black;
   text-transform: lowercase;
 }
 
@@ -681,10 +698,24 @@ background-color: black;
   z-index: 1;
 }
 
-
-.iddle .header_container{
+.archives_inner{
+  background-color: black;
 }
 
+
+.archives_inner .header_container section h1{
+  color: white;
+  font-size: 2vw;
+}
+
+.archives_inner .header_container section h1 span{
+  color: red;
+  background-color: white;
+}
+
+svg{
+  filter: (1);
+}
 
 
 .header_container{
@@ -694,7 +725,7 @@ background-color: black;
   align-items: center;
   width: 100vw;
   flex-direction: column;
-  margin-top: 3vw;
+  padding-top: 3vw;
 }
 
 .header_container section{
@@ -711,8 +742,9 @@ background-color: black;
   color: white;
   border-radius: 50px;
   margin: 0.5vw;
+  font-size: 1.2vw;
   padding: 1vw;
-  font-family: TimesN;
+  font-family: Inconsolata;
 }
 
 .header_container section:first-child{
@@ -765,7 +797,7 @@ background-color: black;
 .scrolling_data{
   position: fixed;
   padding: 1vw;
-  font-size: 1vw;
+  font-size: 3vw;
   z-index: 10000;
   font-family: Inconsolata;
   font-weight: lighter;
@@ -788,12 +820,12 @@ background-color: black;
 }
 
 .iddle_img_div img{
-  width: 80%;
+  width: 70%;
 }
 
 .iddle_img_div span{
   margin-top: 1vw;
-  font-family: TimesN;
+  font-family: Inconsolata;
   text-align: center;
   word-break: break-all;
   max-width: 80%;

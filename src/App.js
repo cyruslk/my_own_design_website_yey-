@@ -5,7 +5,8 @@ import _ from "lodash";
 import ReactHtmlParser from 'react-html-parser';
 import './App.css';
 import VideoWrapper from "./VideoWrapper";
-import ScreenSaver from "./ScreenSaver"
+import Archives from "./Archives";
+import About from "./About";
 
 
 class App extends Component {
@@ -17,12 +18,20 @@ class App extends Component {
       isScrolling: false,
       selectedRandomColor: null,
       scrollAnimationsArray: null,
+      scrollAnimationsArray2: null,
+      scrollAnimationsArray3: null,
       shuffledArrayData: null,
       isAboutRender: false,
       mainMarginLeft: "0vw",
       counter: 0,
       MaininfoData: [
-        "<h1>Hey there, I’m Cyrus. <span>75-20</span> is the small and indenpendant creative-technology practice I run behind my laptop and on the port :3000 of my localhost. Under this moniker, I create and produce websites and apps for a variety of client as well as for my own - taking the form of small experiments and ideas I conduct in the browser and on mobile. </h1><h1>I've been first trained as a designer before shifting to full-stack programming - I therefore have a very keen interest in dynamic typographic systems; and overall with the unusual and weird/expected uses of technology online. </h1><h1> I'm also interested to further explore the intersection between machine learning and design and this could be applied for creative uses. Apart from that, I also have a (small) tech-driven research practice.</h1>",
+        "<span>Hey there, I’m Cyrus.</span>",
+        "<span><a>75-20</a> is the small and indenpendant practice I run in front of my machine.</span>",
+        "<span>Under this moniker, I create and produce websites and apps for a variety of clients and for my own.</span>",
+        "<span>I've been first trained as a designer before shifting to full-stack programming.</span>",
+        "<span>I therefore have a keen interest in typographic systems combined with code; with unusual and expected uses of technology online and offline.</span>",
+        "<span>for more: <a>info@c-t-l-k.com</a></span>"
+
       ],
       EmailData: [
         "For any inquiries",
@@ -51,12 +60,12 @@ class App extends Component {
           left: "54vw"
         },
         {
-          text: "<div>constructor(props) { </div><div>&nbsp;super(props);</div><div>&nbsp;this.state = { <div>&nbsp;&nbsp;screenSaverData: null</div> }</div>}</div>",
+          text: "<div>constructor(props) { </div><div>&nbsp;super(props);</div><div>&nbsp;this.state = { <div>&nbsp;&nbsp;ArchivesData: null</div> }</div>}</div>",
           top: "40vw",
           left: "25vw"
         },
         {
-          text: "<div>export default ScreenSaver;</div>",
+          text: "<div>export default Archives;</div>",
           top: "2vw",
           left: "21vw"
         },
@@ -82,7 +91,7 @@ class App extends Component {
         },
       ],
       randomColors: [
-        "blue",
+        "red",
       ],
       mainData: [
         [
@@ -314,9 +323,8 @@ class App extends Component {
           const style = {
             left: ele.left,
             top:  ele.top,
-            color: "blue",
+            color: "red",
           }
-
           return(
             <div
               key={index}
@@ -332,6 +340,8 @@ class App extends Component {
           scrollAnimationsArray
         })
       }
+
+      makeScrollAnimations();
 
       window.addEventListener('scroll', this.handleScroll, true);
       window.addEventListener('scroll', _.debounce(() => {
@@ -383,37 +393,15 @@ class App extends Component {
       })
     }
 
-    isDisplayedProcess = () => {
-      this.setState({
-        userIsActive: !this.state.userIsActive
-      })
-    }
-
-
     render() {
 
       const renderScrollingContent = () => {
-           if(this.state.isScrolling && this.state.scrollingData.length > 0){
-             let scrollingDataEle = this.state.scrollingData[this.state.counter];
-
-             const style = {
-               left: scrollingDataEle.left,
-               top:  scrollingDataEle.top,
-               color: "blue",
-             }
-
-             return (
-               <div
-                 style={style}
-                 className="scrolling_data">
-                 <Typist>
-                   {ReactHtmlParser(scrollingDataEle.text)}
-                 </Typist>
-               </div>
-             )
-           }else{
-             return null;
-           }
+        if(this.state.isScrolling){
+            let scrollingDataEle = this.state.scrollAnimationsArray[this.state.counter];
+            return scrollingDataEle
+          }else{
+            return null;
+          }
        }
 
 
@@ -444,6 +432,11 @@ class App extends Component {
         }
 
         const headerRender = () => {
+          let style = {
+            color: "white",
+            textDecoration: "none"
+          };
+
           return (
             <header className="header_container">
               <section>
@@ -458,7 +451,7 @@ class App extends Component {
                 <span
                   style={{backgroundColor: this.state.selectedRandomColor}}>
                   <a
-                  style={{color: "white"}}
+                  style={style}
                   href="mailto:info@c-t-l-k.com">
                     EMAIL
                   </a>
@@ -478,7 +471,6 @@ class App extends Component {
           )
         }
 
-
         if(!this.state.selectedRandomColor){
           return (
               <div>
@@ -494,18 +486,10 @@ class App extends Component {
                       {headerRender()}
                       {projectsRender}
                   </div>
-                  {aboutRender()}
+                  <Archives {...this.state}/>
+                  <About {...this.state} />
             </div>
           );
-        }else if(!this.state.userIsActive){
-          return (
-            <div className="App iddle">
-              <ScreenSaver
-                isDisplayedProcess={this.isDisplayedProcess}
-                {...this.state}
-              />
-            </div>
-          )
         }
       }
 }

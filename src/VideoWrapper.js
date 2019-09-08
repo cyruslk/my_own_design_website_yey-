@@ -40,6 +40,7 @@ class VideoWrapper extends Component {
                 </div>
               )
             })
+
             return (
               <section className="additional_screens">
                 <div className="additional_screens_inner">
@@ -61,7 +62,8 @@ class VideoWrapper extends Component {
             <div
               className="info_video">
               <div className="info_video_h1">
-                <h1>
+                <h1
+                  style={{color: this.props.selectedRandomColor}}>
                   {ReactHtmlParser(data.h1)}
                 </h1>
               </div>
