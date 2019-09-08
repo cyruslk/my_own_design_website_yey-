@@ -419,10 +419,12 @@ font-size: 4vw;
 .about_container .header_container{
   align-items: baseline;
   padding-top: 2vw;
+  flex-direction: row;
 }
 
 .about_container .header_container section{
   margin-bottom: 1vw;
+  width: auto;
 }
 
 .about_container_inner{
@@ -702,10 +704,18 @@ background-color: black;
   background-color: black;
 }
 
+.main .header_container section:first-child{
+  flex-direction: column;
+}
+
+.archives_inner .header_container section{
+  flex-direction: row;
+}
 
 .archives_inner .header_container section h1{
   color: white;
   font-size: 2vw;
+  width: auto;
 }
 
 .archives_inner .header_container section h1 span{
@@ -742,15 +752,12 @@ svg{
   color: white;
   border-radius: 50px;
   margin: 0.5vw;
+  margin-left: 0;
   font-size: 1.2vw;
   padding: 1vw;
   font-family: Inconsolata;
 }
 
-.header_container section:first-child{
-  -ms-flex-direction: column;
-      flex-direction: column;
-}
 
 .header_container section h1{
   font-size: 4.5vw;
@@ -820,7 +827,7 @@ svg{
 }
 
 .iddle_img_div img{
-  width: 70%;
+  width: 80%;
 }
 
 .iddle_img_div span{

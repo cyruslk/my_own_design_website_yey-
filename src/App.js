@@ -25,13 +25,13 @@ class App extends Component {
       mainMarginLeft: "0vw",
       counter: 0,
       MaininfoData: [
-        "<span>Hey there, I’m Cyrus.</span>",
-        "<span><a>75-20</a> is the small and indenpendant practice I run in front of my machine.</span>",
+        "<span>Hello dear fellow online user,</span>",
+        "<span><a>75-20</a> is the small and indenpendant practice I run on the port 3000 of my localhost.</span>",
         "<span>Under this moniker, I create and produce websites and apps for a variety of clients and for my own.</span>",
         "<span>I've been first trained as a designer before shifting to full-stack programming.</span>",
-        "<span>I therefore have a keen interest in typographic systems combined with code; with unusual and expected uses of technology online and offline.</span>",
+        "<span>I therefore have a keen interest in typographic systems combined with code; with the unusual and expected uses of technology online and offline.</span>",
+        "<span>That's it...You can rest your eyes now.</span>",
         "<span>for more: <a>info@c-t-l-k.com</a></span>"
-
       ],
       EmailData: [
         "For any inquiries",
@@ -465,6 +465,14 @@ class App extends Component {
                   style={{backgroundColor: this.state.selectedRandomColor}}
                   onClick={this.isDisplayedProcess}>
                     ARCHIVES
+                </span>
+                <span
+                  style={{backgroundColor: this.state.selectedRandomColor}}>
+                  <a
+                  style={style}
+                  href="mailto:info@c-t-l-k.com">
+                    GITHUB
+                  </a>
                 </span>
               </section>
             </header>

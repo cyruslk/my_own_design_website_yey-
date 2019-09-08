@@ -15,6 +15,11 @@ class About extends Component {
                     ABOUT
                   </span>
               </section>
+              <section>
+                  <span>
+                    UP
+                  </span>
+              </section>
             </header>
             <main>
             {ReactHtmlParser(this.props.MaininfoData)}

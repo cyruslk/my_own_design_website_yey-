@@ -57,6 +57,11 @@ class Archives extends Component {
                     ARCHIVES
                   </span>
                 </h1>
+                <h1>
+                  <span>
+                    UP
+                  </span>
+                </h1>
               </section>
             </header>
             <section>
