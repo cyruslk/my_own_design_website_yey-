@@ -26,7 +26,8 @@
 
 
 html{
-  background-color: red;
+  background-color: transparent;
+  scroll-behavior: smooth;
 }
 
 html, body{
@@ -721,10 +722,6 @@ background-color: black;
 .archives_inner .header_container section h1 span{
   color: red;
   background-color: white;
-}
-
-svg{
-  filter: (1);
 }
 
 

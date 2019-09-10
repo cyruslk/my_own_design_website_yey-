@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ScrollTop from "react-scrolltop-button";
 import _ from "lodash";
 import './App.css';
 
@@ -57,7 +58,8 @@ class Archives extends Component {
                     ARCHIVES
                   </span>
                 </h1>
-                <h1>
+                <h1
+                  onClick={this.props.triggerBackToTop}>
                   <span>
                     UP
                   </span>

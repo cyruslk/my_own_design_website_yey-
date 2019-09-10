@@ -361,6 +361,10 @@ class App extends Component {
       }, 500))
    }
 
+   triggerBackToTop = () => {
+     return window.scrollTo(0, 0);
+   }
+
     triggerIsAboutRender = () => {
       this.setState({
         isAboutRender: !this.state.isAboutRender
@@ -452,6 +456,8 @@ class App extends Component {
                   style={{backgroundColor: this.state.selectedRandomColor}}>
                   <a
                   style={style}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   href="mailto:info@c-t-l-k.com">
                     EMAIL
                   </a>
@@ -469,8 +475,10 @@ class App extends Component {
                 <span
                   style={{backgroundColor: this.state.selectedRandomColor}}>
                   <a
-                  style={style}
-                  href="mailto:info@c-t-l-k.com">
+                    style={style}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/cyruslk">
                     GITHUB
                   </a>
                 </span>
@@ -494,7 +502,9 @@ class App extends Component {
                       {headerRender()}
                       {projectsRender}
                   </div>
-                  <Archives {...this.state}/>
+                  <Archives
+                    triggerBackToTop={this.triggerBackToTop}
+                    {...this.state}/>
                   <About {...this.state} />
             </div>
           );
